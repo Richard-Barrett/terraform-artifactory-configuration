@@ -21,10 +21,11 @@ HOME_PATH = f"{Path(__file__).parent.resolve()}"
 def main():
     with Diagram(filename="images/diagram", show=False, direction="LR", graph_attr=graph_attr):
         aws_users = Users()
+        artifactory = Custom("Artifactory", icon_path=f"{HOME_PATH}/images/jfrog_artifactory.png")
         terraform = Custom("Terraform", icon_path=f"{HOME_PATH}/images/terraform.png")
         s3_backend = S3("Statefile Bucket")
         codefresh = Custom("Codefresh", icon_path=f"{HOME_PATH}/images/codefresh.png")
-        aws_users >> s3_backend >> codefresh
+        aws_users >> s3_backend >> codefresh >> artifactory
         aws_users >> terraform
         terraform >> s3_backend
 
